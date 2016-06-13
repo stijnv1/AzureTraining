@@ -1,0 +1,2 @@
+# AzureTraining
+ARM templates
