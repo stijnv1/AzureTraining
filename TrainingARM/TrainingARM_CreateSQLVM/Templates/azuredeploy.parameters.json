@@ -1,0 +1,53 @@
+﻿{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "StorageAccountName": {
+      "value": "staatsverho"
+    },
+
+    "adminUsername": {
+      "value": "demouser"
+    },
+
+    "adminPassword": {
+      "value": "demo@pass123"
+    },
+
+    "windowsOSVersion": {
+      "value": "2012-R2-Datacenter"
+    },
+
+    "vnetName": {
+      "value": "OpsTrainingVNET"
+    },
+
+    "vnetSubnetName": {
+      "value": "Apps"
+    },
+
+    "vmName": {
+      "value": "WebVM-2"
+    },
+
+    "vmSize": {
+      "value": "Standard_DS1"
+    },
+
+    "dnsLabelPrefix": {
+      "value": "webvm2atsverho"
+    },
+
+    "vnetRG": {
+      "value": "OpsVNETRmRG"
+    },
+
+    "AvailabilitySetName": {
+      "value": "WebAVSet"
+    },
+
+    "NSGName": {
+      "value": "APPSNSG"
+    }
+  }
+}

@@ -7,6 +7,8 @@ Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "TrainingARM_CreateVNET", "T
 EndProject
 Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "TrainingARM_CreateVM", "TrainingARM_CreateVM\TrainingARM_CreateVM.deployproj", "{A8768855-875E-4E31-BBAD-68B6452870C9}"
 EndProject
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "TrainingARM_CreateSQLVM", "TrainingARM_CreateSQLVM\TrainingARM_CreateSQLVM.deployproj", "{976387F1-2C95-4CE9-AE2E-29A78E08F7F1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A8768855-875E-4E31-BBAD-68B6452870C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8768855-875E-4E31-BBAD-68B6452870C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8768855-875E-4E31-BBAD-68B6452870C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{976387F1-2C95-4CE9-AE2E-29A78E08F7F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{976387F1-2C95-4CE9-AE2E-29A78E08F7F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{976387F1-2C95-4CE9-AE2E-29A78E08F7F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{976387F1-2C95-4CE9-AE2E-29A78E08F7F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
