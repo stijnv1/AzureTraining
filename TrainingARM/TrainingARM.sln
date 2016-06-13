@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "TrainingARM_CreateVNET", "TrainingARM\TrainingARM_CreateVNET.deployproj", "{AFD8654A-BE7A-4C3E-B75F-E6421AD1DAAF}"
 EndProject
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "TrainingARM_CreateVM", "TrainingARM_CreateVM\TrainingARM_CreateVM.deployproj", "{A8768855-875E-4E31-BBAD-68B6452870C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{AFD8654A-BE7A-4C3E-B75F-E6421AD1DAAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFD8654A-BE7A-4C3E-B75F-E6421AD1DAAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFD8654A-BE7A-4C3E-B75F-E6421AD1DAAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8768855-875E-4E31-BBAD-68B6452870C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8768855-875E-4E31-BBAD-68B6452870C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8768855-875E-4E31-BBAD-68B6452870C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8768855-875E-4E31-BBAD-68B6452870C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

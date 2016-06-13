@@ -23,7 +23,7 @@
     },
 
     "vNetSubnetName2": {
-      "value": "Apps"
+      "value": "Data"
     },
 
     "vnetSubnetPrefix2": {
