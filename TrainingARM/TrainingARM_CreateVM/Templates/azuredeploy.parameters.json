@@ -51,7 +51,7 @@
     },
 
     "modulesUrl": {
-      "value": "https://github.com/stijnv1/AzureTraining/blob/master/TrainingARM/TrainingARM_CreateVM/DSC/InstallIIS.zip"
+      "value": "https://github.com/stijnv1/AzureTraining/raw/master/TrainingARM/TrainingARM_CreateVM/DSC/InstallIIS.zip"
     },
 
     "configurationFunction": {

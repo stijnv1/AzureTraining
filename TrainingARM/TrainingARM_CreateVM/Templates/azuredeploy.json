@@ -121,8 +121,7 @@
     "subnetID": "[concat(variables('vnetID'),'/subnets/', parameters('vnetSubnetName'))]",
     "imagePublisher": "MicrosoftWindowsServer",
     "imageOffer": "WindowsServer",
-    "NSGID": "[resourceid(parameters('vnetRG'),'Microsoft.Network/networkSecurityGroups',parameters('NSGName'))]",
-    "vmExtensionName": "DSCExtension"
+    "NSGID": "[resourceid(parameters('vnetRG'),'Microsoft.Network/networkSecurityGroups',parameters('NSGName'))]"
   },
 
   "resources": [
@@ -256,7 +255,7 @@
 
     {
       "type": "Microsoft.Compute/virtualMachines/extensions",
-      "name": "[concat(parameters('vmName'),'/', variables('vmExtensionName'))]",
+      "name": "[concat(parameters('vmName'),'/', '/Microsoft.PowerShell.DSC')]",
       "apiVersion": "2015-05-01-preview",
       "location": "[resourceGroup().location]",
       "dependsOn": [
