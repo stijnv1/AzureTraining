@@ -246,31 +246,13 @@
     {
       "publisher": "Microsoft.Powershell",
       "type": "DSC",
-      "typeHandlerVersion": "2.17",
+      "typeHandlerVersion": "2.19",
+      "autoUpgradeMinorVersion": true,
       "settings": {
-        "ModulesUrl": "https://UrlToZipContainingConfigurationScript.ps1.zip",
-        "SasToken": "Optional : SAS Token if ModulesUrl points to Azure Blob Storage",
-        "ConfigurationFunction": "ConfigurationScript.ps1\\ConfigurationFunction",
-        "Properties": {
-          "ParameterToConfigurationFunction1": "Value1",
-          "ParameterToConfigurationFunction2": "Value2",
-          "ParameterOfTypePSCredential1": {
-            "UserName": "UsernameValue1",
-            "Password": "PrivateSettingsRef:Key1(Value is a reference to a member of the Items object in the protected settings)"
-          },
-          "ParameterOfTypePSCredential2": {
-            "UserName": "UsernameValue2",
-            "Password": "PrivateSettingsRef:Key2"
-          }
-        }
+        "ModulesUrl": "https://github.com/stijnv1/AzureTraining/blob/master/TrainingARM/TrainingARM_CreateVM/DSC/InstallIIS.zip",
+        "ConfigurationFunction": "InstalIIS.ps1\\IISInstall"
       },
-      "protectedSettings": {
-        "Items": {
-          "Key1": "PasswordValue1",
-          "Key2": "PasswordValue2"
-        },
-        "DataBlobUri": "optional : https: //UrlToConfigurationData.psd1"
-      }
+      "protectedSettings": null
     }
   ],
     "outputs": {
