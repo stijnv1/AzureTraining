@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
   "parameters": {
     "StorageAccountName": {
-      "value": "staatsverho"
+      "value": "staatsverhodev"
     },
 
     "adminUsername": {
@@ -19,15 +19,15 @@
     },
 
     "vnetName": {
-      "value": "OpsTrainingVNET"
+      "value": "VNET_SVERHO"
     },
 
     "vnetSubnetName": {
-      "value": "Apps"
+      "value": "SUBNET_1_VNET_SVERHO"
     },
 
     "vmName": {
-      "value": "WebVM-2"
+      "value": "TESTVM01"
     },
 
     "vmSize": {
@@ -35,19 +35,19 @@
     },
 
     "dnsLabelPrefix": {
-      "value": "webvm2atsverho"
+      "value": "accesstestdev"
     },
 
     "vnetRG": {
-      "value": "OpsVNETRmRG"
+      "value": "RG_VNET"
     },
 
-    "AvailabilitySetName": {
-      "value": "WebAVSet"
+    "AS_TESTVMsName": {
+      "value": "AS_TESTDEV"
     },
 
     "NSGName": {
-      "value": "APPSNSG"
+      "value": "NSG_TESTDEV"
     }
   }
 }

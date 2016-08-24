@@ -1,0 +1,99 @@
+﻿{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vNetName": {
+      "type": "string",
+      "defaultValue": "VNET01",
+      "metadata": {
+        "Description": "VNET Name"
+      }
+    },
+
+    "vNetAddressPrefix": {
+      "type": "string",
+      "defaultValue": "10.10.10.0/24",
+      "metadata": {
+        "Description": "VNET subnet"
+      }
+    },
+
+    "Location": {
+      "type": "string",
+      "metadata": {
+        "Description": "Deployment Location"
+      }
+    },
+
+    "vNetSubnetName1": {
+      "type": "string",
+      "defaultValue": "apps",
+      "metadata": {
+        "Description": "VNET subnet name"
+      }
+    },
+
+    "vnetSubnetPrefix1": {
+      "type": "string",
+      "metadata": {
+        "Description": "Subnet prefix"
+      }
+    },
+
+    "vNetSubnetName2": {
+      "type": "string",
+      "defaultValue": "apps",
+      "metadata": {
+        "Description": "VNET subnet name"
+      }
+    },
+
+    "vnetSubnetPrefix2": {
+      "type": "string",
+      "metadata": {
+        "Description": "Subnet prefix"
+      }
+    }
+
+  },
+  "variables": {
+    "apiVersion": {
+      "vNets": {
+        "VirtualNetworks": "2015-06-15"
+      }
+    }
+  },
+
+  "resources": [
+    {
+      "apiVersion": "[variables('apiVersion').vNets.VirtualNetworks]",
+      "location": "[parameters('Location')]",
+      "name": "[parameters('vNetName')]",
+      "type": "Microsoft.Network/virtualNetworks",
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[parameters('vNetAddressPrefix')]"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "[parameters('vNetSubnetName1')]",
+            "properties": {
+              "addressPrefix": "[parameters('vNetSubnetPrefix1')]"
+            }
+          },
+
+          {
+            "name": "[parameters('vNetSubnetName2')]",
+            "properties": {
+              "addressPrefix": "[parameters('vNetSubnetPrefix2')]"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "outputs": {
+  }
+}

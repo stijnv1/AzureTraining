@@ -84,28 +84,26 @@
       }
     },
 
-    "AvailabilitySetName": {
-      "type": "string",
-      "metadata": {
-        "Description": "Name of the availability set"
-      }
-    },
-
     "NSGName": {
       "type": "string",
       "metadata": {
-        "Description" :  "Name of the Network Security Group which must be assigned to VM"
+        "Description": "Name of the Network Security Group which must be assigned to VM"
       }
+    },
+
+    "AS_TESTVMsName": {
+        "type": "string",
+        "minLength": 1
     }
   },
 
   "variables": {
     "sizeOfDiskInGB": "100",
-    "dataDisk1VhdName": "webvm2Datadisk1",
-    "OSDiskName": "webvm2OSDisk",
-    "nicName": "webvm2Nic",
+    "dataDisk1VhdName": "[concat(parameters('vmName'),'_DataDisk1')]",
+    "OSDiskName": "[concat(parameters('vmName'),'_OSDisk')]",
+    "nicName": "[concat(parameters('vmName'),'_VNIC')]",
     "storageAccountType": "Standard_LRS",
-    "publicIPAddressName": "webvm2PublicIP",
+    "publicIPAddressName": "[concat(parameters('vmName'),'_PublicIP')]",
     "publicIPAddressType": "Dynamic",
     "vmStorageAccountContainerName": "vhds",
     "apiVersion": "2015-06-15",
@@ -113,11 +111,22 @@
     "subnetID": "[concat(variables('vnetID'),'/subnets/', parameters('vnetSubnetName'))]",
     "imagePublisher": "MicrosoftWindowsServer",
     "imageOffer": "WindowsServer",
-    "NSGID": "[resourceid(resourceGroup().Name,'Microsoft.Network/networkSecurityGroups',parameters('NSGName'))]",
-    "AvailabilitySetID": "[resourceId(resourceGroup().Name,'Microsoft.Compute/availabilitySets',parameters('AvailabilitySetName'))]"
+    "NSGID": "[resourceid(parameters('vnetRG'),'Microsoft.Network/networkSecurityGroups',parameters('NSGName'))]"
   },
 
   "resources": [
+    {
+      "name": "[parameters('AS_TESTVMsName')]",
+      "type": "Microsoft.Compute/availabilitySets",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2015-06-15",
+      "dependsOn": [ ],
+      "properties": {
+        "platformUpdateDomainCount": 1,
+        "platformFaultDomainCount": 1
+      }
+    },
+
     {
       "type": "Microsoft.Storage/storageAccounts",
       "name": "[parameters('StorageAccountName')]",
@@ -181,7 +190,7 @@
       ],
       "properties": {
         "availabilitySet": {
-          "id": "[variables('AvailabilitySetID')]"
+          "id": "[resourceId('Microsoft.Microsoft.Compute/availabilitySets',parameters('AS_TESTVMsName'))]"
         },
         "hardwareProfile": {
           "vmSize": "[parameters('vmSize')]"
@@ -231,6 +240,36 @@
             "storageUri": "[concat('http://',parameters('StorageAccountName'),'.blob.core.windows.net')]"
           }
         }
+      }
+    },
+
+    {
+      "publisher": "Microsoft.Powershell",
+      "type": "DSC",
+      "typeHandlerVersion": "2.17",
+      "settings": {
+        "ModulesUrl": "https://UrlToZipContainingConfigurationScript.ps1.zip",
+        "SasToken": "Optional : SAS Token if ModulesUrl points to Azure Blob Storage",
+        "ConfigurationFunction": "ConfigurationScript.ps1\\ConfigurationFunction",
+        "Properties": {
+          "ParameterToConfigurationFunction1": "Value1",
+          "ParameterToConfigurationFunction2": "Value2",
+          "ParameterOfTypePSCredential1": {
+            "UserName": "UsernameValue1",
+            "Password": "PrivateSettingsRef:Key1(Value is a reference to a member of the Items object in the protected settings)"
+          },
+          "ParameterOfTypePSCredential2": {
+            "UserName": "UsernameValue2",
+            "Password": "PrivateSettingsRef:Key2"
+          }
+        }
+      },
+      "protectedSettings": {
+        "Items": {
+          "Key1": "PasswordValue1",
+          "Key2": "PasswordValue2"
+        },
+        "DataBlobUri": "optional : https: //UrlToConfigurationData.psd1"
       }
     }
   ],

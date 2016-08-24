@@ -1,0 +1,89 @@
+﻿{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+  "parameters": {
+    "LBName": {
+      "type": "string",
+      "metadata": {
+        "Description": "Name of the Azure Load Balancer"
+      }
+    },
+
+    "PublicIPName": {
+      "type": "string"
+    }
+  },
+
+  "variables": {
+    "PublicIPid": "[resourceId('Microsoft.Network/publicIPAddresses/',parameters('PublicIPName'))]",
+    "lbID": "[resourceId('Microsoft.Network/loadBalancers',parameters('LBName'))]",
+    "lbProbeID": "[concat(variables('lbID'),'/probes/tcpProbe')]",
+    "frontEndIPConfigID1": "[concat(variables('lbID'),'/frontendIPConfigurations/loadBalancerFrontEnd1')]",
+    "lbBackendPoolID": "[concat(variables('lbID'),'/backendAddressPools/loadBalancerBackend')]"
+  },
+
+  "resources": [
+
+    {
+      "type": "Microsoft.Network/publicIPAddresses",
+      "name": "[parameters('PublicIPName')]",
+      "apiVersion": "2015-06-15",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "publicIPAllocationMethod": "Static"
+      }
+    },
+
+
+    {
+      "type": "Microsoft.Network/loadBalancers",
+      "name": "[parameters('LBName')]",
+      "apiVersion": "2015-06-15",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[concat('Microsoft.Network/publicIPAddresses/',parameters('PublicIPName'))]"
+      ],
+
+      "properties": {
+        "frontendIPConfigurations": [
+          {
+            "name": "LBFrontEndIPConfig1",
+            "properties": {
+              "publicIPAddress": {
+                "id": "[resourceId('Microsoft.Network/publicIPAddresses',parameters('PublicIPName'))]"
+              }
+            }
+          }
+        ],
+
+        "backendAddressPools": [
+          {
+            "name": "LBBackEnd"
+          }
+        ],
+
+        "loadBalancingRules": [
+          {
+            "name": "LBRuleForVIP1",
+            "properties": {
+              "frontendIPConfiguration": {
+                "id": "[variables('frontEndIPConfigID1')]"
+              },
+              "backendAddressPool": {
+                "id": "[variables('lbBackendPoolID')]"
+              },
+              "protocol": "tcp",
+              "frontendPort": 80,
+              "backendPort": 80,
+              "probe": {
+                "id": "[variables('lbProbeID')]"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+    "outputs": {
+    }
+}
