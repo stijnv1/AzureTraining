@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
   "parameters": {
     "StorageAccountName": {
-      "value": "staatsverhodev"
+      "value": "dscsverhodev"
     },
 
     "adminUsername": {
@@ -27,7 +27,7 @@
     },
 
     "vmName": {
-      "value": "TESTVM01"
+      "value": "TESTDSCVM01"
     },
 
     "vmSize": {
@@ -48,6 +48,14 @@
 
     "NSGName": {
       "value": "NSG_TESTDEV"
+    },
+
+    "modulesUrl": {
+      "value": "https://github.com/stijnv1/AzureTraining/blob/master/TrainingARM/TrainingARM_CreateVM/DSC/InstallIIS.zip"
+    },
+
+    "configurationFunction": {
+      "value": "InstalIIS.ps1\\IISInstall"
     }
   }
 }
